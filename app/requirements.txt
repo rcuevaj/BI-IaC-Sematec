@@ -1,0 +1,6 @@
+cffi==1.17.1
+cryptography==45.0.5
+psycopg2==2.9.10
+pycparser==2.22
+python-dotenv==1.1.1
+PyYAML==6.0.2

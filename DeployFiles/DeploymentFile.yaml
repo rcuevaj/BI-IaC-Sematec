@@ -1,0 +1,8 @@
+template-file-path: infraestructure/db-mysql.yml
+parameters:
+  DBName: "sematec-plataform"
+  DBUser: "SematecAdmin"
+  AllocatedStorage: 5
+  DBInstanceClass: "db.t3.medium"
+  EnableReadReplica: "true"
+tags:

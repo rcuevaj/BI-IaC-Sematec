@@ -1,6 +1,6 @@
 template-file-path: infraestructure/db-mysql.yml
 parameters:
-  DBName: "sematec-plataform"
+  DBName: "SematecPlataform"
   DBUser: "SematecAdmin"
   DBAllocatedStorage: 5
   DBInstanceClass: "db.t3.medium"

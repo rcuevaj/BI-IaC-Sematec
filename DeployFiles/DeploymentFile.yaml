@@ -1,0 +1,12 @@
+template-file-path: infraestructure/db-mysql.yml
+parameters:
+  DBName: "SematecPlataform"
+  DBUser: "SematecAdmin"
+  DBAllocatedStorage: 5
+  DBInstanceClass: "db.t3.medium"
+  EnableReadReplica: "true"
+tags:
+  Project: "Sematec"
+  Owner: "Ronald"
+  Environment: "Dev"
+  

@@ -7,7 +7,7 @@ Metadata:
 
 Parameters:
   DBName:
-    Description: sematec-structure
+    Description: "Database name"
     Type: String
     Default: MyDatabase
     MinLength: "1"

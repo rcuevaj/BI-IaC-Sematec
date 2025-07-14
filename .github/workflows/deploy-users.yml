@@ -1,0 +1,28 @@
+name: Crear usuarios en la base de datos RDS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  crear-usuarios:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar cliente MySQL
+        run: sudo apt-get update && sudo apt-get install -y mysql-client
+
+      - name: Reemplazar contraseñas en el script
+        run: |
+          sed -i "s/REPLACE_WITH_PASSWORD1/${{ secrets.READ_ONLY_PASSWORD }}/g" scripts/init-users.sql
+          sed -i "s/REPLACE_WITH_PASSWORD2/${{ secrets.READ_WRITE_PASSWORD }}/g" scripts/init-users.sql
+
+      - name: Ejecutar script de creación de usuarios
+        env:
+          MYSQL_PWD: ${{ secrets.RDS_ADMIN_PASSWORD }}
+        run: |
+          mysql -h ${{ secrets.RDS_HOST }} -P ${{ secrets.RDS_PORT }} \
+            -u ${{ secrets.RDS_ADMIN_USER }} \
+            ${{ secrets.RDS_DBNAME }} < scripts/init-users.sql

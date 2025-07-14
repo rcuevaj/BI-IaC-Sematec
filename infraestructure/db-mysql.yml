@@ -45,6 +45,11 @@ Parameters:
     AllowedPattern: '[a-zA-Z0-9\-]+'
     ConstraintDescription: must be a valid security group name.
 
+  AllowedCIDR:
+    Type: String
+    Default: "0.0.0.0/0"
+    Description: CIDR IP range allowed to access RDS (e.g. 0.0.0.0/0 or 186.123.45.0/32)
+
   MultiAZ:
     Description: Multi-AZ master database
     Type: String
@@ -86,6 +91,10 @@ Resources:
           FromPort: "3306"
           ToPort: "3306"
           SourceSecurityGroupName: !Ref EC2SecurityGroup
+        - IpProtocol: tcp
+          FromPort: "3306"
+          ToPort: "3306"
+          CidrIp: !Ref AllowedCIDR
     Condition: IsEC2VPC
 
   DBCredential:
@@ -110,7 +119,7 @@ Resources:
       MasterUsername: !Ref DBUser
       MasterUserPassword: !Sub "{{resolve:secretsmanager:${DBCredential}}}"
       MultiAZ: !Ref MultiAZ
-      PubliclyAccessible: false
+      PubliclyAccessible: true
       StorageEncrypted: true
       Tags:
         - Key: Name

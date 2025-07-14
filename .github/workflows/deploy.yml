@@ -33,4 +33,4 @@ jobs:
             --tags \
               Project=Sematec \
               Owner=Ronald \
-              Environment=Dev
+              Environment=Develoment

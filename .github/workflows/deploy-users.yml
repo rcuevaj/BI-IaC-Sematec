@@ -1,7 +1,9 @@
 name: Crear usuarios en la base de datos RDS
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - deploy
 
 jobs:
   crear-usuarios:

@@ -1,9 +1,7 @@
 name: Desplegar stack CloudFormation (RDS)
 
 on:
-  push:
-    branches:
-      - deploy
+  workflow_dispatch:
 
 jobs:
   deploy-rds:

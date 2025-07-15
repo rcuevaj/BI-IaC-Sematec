@@ -24,7 +24,7 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file infraestructure/db-mysql.yml \
-            --stack-name sematec-rds-stack \
+            --stack-name sematec-stack \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
               DBName=SematecPlataform \

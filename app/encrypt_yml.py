@@ -35,24 +35,41 @@ def decrypt(encrypted_text: str) -> str:
 with open("credential.yml", "r") as f:
     config = yaml.safe_load(f)
 
-# Encriptar
-if config['app']['encrypted'] == 0:
-    config['app']['db']['user'] = encrypt(config['app']['db']['user'])
-    config['app']['db']['password'] = encrypt(config['app']['db']['password'])
-    config['app']['db']['port'] = encrypt(config['app']['db']['port'])
-    config['app']['db']['name'] = encrypt(config['app']['db']['name'])
-    config['app']['db']['host'] = encrypt(config['app']['db']['host'])
-    config['app']['encrypted'] = 1
+# Encriptar Credenciales DBSupabase
+if config['app']['DBSupabase']['encrypted'] == 0:
+    config['app']['DBSupabase']['user'] = encrypt(config['app']['DBSupabase']['user'])
+    config['app']['DBSupabase']['password'] = encrypt(config['app']['DBSupabase']['password'])
+    config['app']['DBSupabase']['port'] = encrypt(config['app']['DBSupabase']['port'])
+    config['app']['DBSupabase']['name'] = encrypt(config['app']['DBSupabase']['name'])
+    config['app']['DBSupabase']['host'] = encrypt(config['app']['DBSupabase']['host'])
+    config['app']['DBSupabase']['encrypted'] = 1
 
     # Guardar en YAML (encriptado)
     with open("credential.yml", "w") as f:
         yaml.dump(config, f)
 else:
-    print("Yml ya encriptado")
+    print("DBSupabase ya encriptado")
+
+# Encriptar Credenciales SematecPlataform
+if config['app']['DBSematecPlataform']['encrypted'] == 0:
+    config['app']['DBSematecPlataform']['host'] = encrypt(config['app']['DBSematecPlataform']['host'])
+    config['app']['DBSematecPlataform']['port'] = encrypt(config['app']['DBSematecPlataform']['port'])
+    config['app']['DBSematecPlataform']['user'] = encrypt(config['app']['DBSematecPlataform']['user'])
+    config['app']['DBSematecPlataform']['password'] = encrypt(config['app']['DBSematecPlataform']['password'])
+    config['app']['DBSematecPlataform']['database'] = encrypt(config['app']['DBSematecPlataform']['database'])
+    config['app']['DBSematecPlataform']['encrypted'] = 1
+
+    # Guardar en YAML (encriptado)
+    with open("credential.yml", "w") as f:
+        yaml.dump(config, f)
+else:
+    print("DBSematecPlataform ya encriptado")
 
 # Leer y desencriptar
 with open("credential.yml", "r") as f:
     encrypted_config = yaml.safe_load(f)
 
-encrypted_user = decrypt(encrypted_config['app']['db']['user'])
+encrypted_user = decrypt(encrypted_config['app']['DBSupabase']['user'])
 print(f"Usuario desencriptado: {encrypted_user}")
+encrypted_user_2 = decrypt(encrypted_config['app']['DBSematecPlataform']['user'])
+print(f"Usuario desencriptado: {encrypted_user_2}")

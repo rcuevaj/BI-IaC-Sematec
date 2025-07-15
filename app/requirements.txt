@@ -4,3 +4,4 @@ psycopg2==2.9.10
 pycparser==2.22
 python-dotenv==1.1.1
 PyYAML==6.0.2
+PyMySQL==1.1.1

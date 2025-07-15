@@ -26,3 +26,5 @@ jobs:
           mysql -h ${{ secrets.RDS_HOST }} -P ${{ secrets.RDS_PORT }} \
             -u ${{ secrets.RDS_ADMIN_USER }} \
             ${{ secrets.RDS_DBNAME }} < scripts/init-users.sql
+
+#
